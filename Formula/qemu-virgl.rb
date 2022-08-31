@@ -6,6 +6,11 @@ class QemuVirgl < Formula
   version "20220226.1"
   license "GPL-2.0-only"
 
+  bottle do
+    root_url "https://github.com/akirakyle/homebrew-qemu-virgl/releases/download/v1"
+    sha256 arm64_monterey: "8c99845bd3b87a4cddbf68e7bb82d4abdf29a2d7502043c2f22043cbbe76131b"
+  end
+
   depends_on "libtool" => :build
   depends_on "meson" => :build
   depends_on "ninja" => :build
