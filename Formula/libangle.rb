@@ -5,12 +5,6 @@ class Libangle < Formula
   version "20220804.1"
   license "BSD-3-Clause"
 
-  bottle do
-    root_url "https://github.com/akirakyle/homebrew-qemu-virgl/releases/download/libangle-20211212.1"
-    sha256 cellar: :any, arm64_big_sur: "6e776fc996fa02df211ee7e79512d4996558447bde65a63d2c7578ed1f63f660"
-    sha256 cellar: :any, big_sur:       "1c201f77bb6d877f2404ec761e47e13b97a3d61dff7ddfc484caa3deae4e5c1b"
-  end
-
   depends_on "meson" => :build
   depends_on "ninja" => :build
 
@@ -26,16 +20,25 @@ class Libangle < Formula
           Dir.chdir(buildpath)
           ENV["DEPOT_TOOLS_UPDATE"] = "0"
 
-          system "python3", "scripts/bootstrap.py"
-          system "gclient", "sync", "-D"
+          system "gclient", "config",
+                 "--name", "change2dot",
+                 "--unmanaged",
+                 "--cache-dir", "#{HOMEBREW_CACHE}/gclient_cache",
+                 "-j", ENV.make_jobs,
+                 "https://chromium.googlesource.com/angle/angle.git"
+          content = File.read('.gclient')
+          content = content.gsub(/change2dot/, '.')
+          content += "target_os = [ 'android' ]"
+          File.open('.gclient', "w") {|file| file.puts content }
+          system "gclient", "sync", "-j", ENV.make_jobs
+          #"--no-history", "--shallow",
+
           system "gn", "gen", \
                  "--args=is_debug=false", \
                  "./angle_build"
           system "ninja", "-C", "angle_build"
-          lib.install "angle_build/libabsl.dylib"
           lib.install "angle_build/libEGL.dylib"
           lib.install "angle_build/libGLESv2.dylib"
-          lib.install "angle_build/libchrome_zlib.dylib"
           include.install Pathname.glob("include/*")
         end
       end
