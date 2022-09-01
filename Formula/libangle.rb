@@ -7,6 +7,8 @@ class Libangle < Formula
 
   # relocation fails in replace_command with HeaderPadError in macho_file.rb
   # this issue may be related https://github.com/Homebrew/brew/issues/12832
+  # this should fix the bottling: https://github.com/Homebrew/brew/issues/4979
+  # this seems like a similar error: https://github.com/knazarov/homebrew-qemu-virgl/issues/91
   bottle do
     root_url "https://github.com/akirakyle/homebrew-qemu-virgl/releases/download/v1"
     sha256 cellar: :any_skip_relocation, arm64_monterey: "45576813b1425175f7a3cb9aedae4d3180401ac98f8a9cb2a947fba305604578"
@@ -44,6 +46,7 @@ class Libangle < Formula
                  "--args=is_debug=false", \
                  "./angle_build"
           system "ninja", "-C", "angle_build"
+          system "false"
           lib.install "angle_build/libEGL.dylib"
           lib.install "angle_build/libGLESv2.dylib"
           include.install Pathname.glob("include/*")

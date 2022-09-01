@@ -8,7 +8,7 @@ class QemuVirgl < Formula
 
   bottle do
     root_url "https://github.com/akirakyle/homebrew-qemu-virgl/releases/download/v1"
-    sha256 arm64_monterey: "dd97acc512e8d6683abcf5952cec78444f0180b5e754d5c577ca592347e3fa17"
+    sha256 arm64_monterey: "2ca789852d2c052c3c660859c48d644a38a11c4ce10ca683163fb0ea3ef041e8"
   end
 
   depends_on "libtool" => :build
@@ -60,9 +60,13 @@ class QemuVirgl < Formula
       --extra-ldflags=-L#{Formula["libepoxy-angle"].opt_prefix}/lib
       --extra-ldflags=-L#{Formula["virglrenderer"].opt_prefix}/lib
       --extra-ldflags=-L#{Formula["spice-protocol"].opt_prefix}/lib
+      --extra-ldflags=-Wl,-rpath,#{HOMEBREW_PREFIX}/lib
       --disable-sdl
       --disable-gtk
     ]
+
+# https://github.com/mesonbuild/meson/issues/3882
+# https://github.com/mesonbuild/meson/issues/2567
     # Sharing Samba directories in QEMU requires the samba.org smbd which is
     # incompatible with the macOS-provided version. This will lead to
     # silent runtime failures, so we set it to a Homebrew path in order to
@@ -72,8 +76,13 @@ class QemuVirgl < Formula
 
     args << "--enable-cocoa" if OS.mac?
 
+    system "sed", "-i", "-e", "3520i             
+               install_rpath: '/opt/homebrew/lib',
+", "meson.build"
+    #system "false"
     system "./configure", *args
     system "make", "V=1", "install"
+    system "false"
   end
 
   test do
