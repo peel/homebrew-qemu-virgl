@@ -5,6 +5,8 @@ class Libangle < Formula
   version "20220804.1"
   license "BSD-3-Clause"
 
+  # relocation fails in replace_command with HeaderPadError in macho_file.rb
+  # this issue may be related https://github.com/Homebrew/brew/issues/12832
   bottle do
     root_url "https://github.com/akirakyle/homebrew-qemu-virgl/releases/download/v1"
     sha256 cellar: :any_skip_relocation, arm64_monterey: "45576813b1425175f7a3cb9aedae4d3180401ac98f8a9cb2a947fba305604578"
