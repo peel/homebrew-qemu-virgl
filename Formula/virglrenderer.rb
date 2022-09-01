@@ -19,7 +19,8 @@ class Virglrenderer < Formula
   def install
     mkdir "build" do
       system "meson", *std_meson_args,
-             "-Dc_args=-I#{Formula["libepoxy-angle"].opt_prefix}/include", ".."
+             "-Dc_args=-I#{Formula["libepoxy-angle"].opt_prefix}/include",
+             "-Dc_link_args=-L#{Formula["libepoxy-angle"].opt_prefix}/lib", ".."
       system "ninja", "-v"
       system "ninja", "install", "-v"
     end
