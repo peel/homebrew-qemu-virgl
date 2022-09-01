@@ -8,7 +8,7 @@ class QemuVirgl < Formula
 
   bottle do
     root_url "https://github.com/akirakyle/homebrew-qemu-virgl/releases/download/v1"
-    sha256 arm64_monterey: "8c99845bd3b87a4cddbf68e7bb82d4abdf29a2d7502043c2f22043cbbe76131b"
+    sha256 arm64_monterey: "a97a889ccec2979029c231dd50252826cac2e779a56b511d2a2361de8ff405ee"
   end
 
   depends_on "libtool" => :build
