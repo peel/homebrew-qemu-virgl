@@ -8,21 +8,23 @@ class LibepoxyAngle < Formula
 
   bottle do
     root_url "https://github.com/akirakyle/homebrew-qemu-virgl/releases/download/v1"
-    sha256 cellar: :any, arm64_monterey: "f7f8e1e8866404682a4d58d7227a27a351fecb4878b3f7dc12a1fb74332c428d"
+    sha256 cellar: :any, arm64_monterey: "3fbabe75763e6379178bc3dc52a874f124ca614f54dec421df07c742189df264"
   end
 
   depends_on "meson" => :build
   depends_on "ninja" => :build
   depends_on "pkg-config" => :build
-  depends_on "python@3.9" => :build
+  depends_on "python@3.10" => :build
   depends_on "akirakyle/qemu-virgl/libangle"
 
   def install
     mkdir "build" do
       system "meson", *std_meson_args,
+             "-Degl=yes", "-Dx11=false",
              "-Dc_args=-I#{Formula["libangle"].opt_prefix}/include",
-             "-Dc_link_args=-Wl,-rpath,#{rpath}",
-             "-Degl=yes", "-Dx11=false", ".."
+             "-Dc_link_args=-Wl,-rpath,${HOMEBREW_PREFIX}/lib",
+             "-Dc_link_args=-L#{Formula["libangle"].opt_prefix}/lib", ".."
+             #"-Dc_link_args=-Wl,-rpath,#{rpath}",
       system "ninja", "-v"
       system "ninja", "install", "-v"
     end
