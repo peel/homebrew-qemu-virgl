@@ -41,12 +41,16 @@ class Libangle < Formula
           File.open('.gclient', "w") {|file| file.puts content }
           system "gclient", "sync", "-j", ENV.make_jobs
           #"--no-history", "--shallow",
+          # add -Wl,-headerpad_max_install_names to BUILD.gn at 1181
 
+          system "sed", "-i", "-e", "1181i             
+          \"-Wl,-headerpad_max_install_names\",
+          ", "BUILD.gn"
+          system "false"
           system "gn", "gen", \
                  "--args=is_debug=false", \
                  "./angle_build"
           system "ninja", "-C", "angle_build"
-          system "false"
           lib.install "angle_build/libEGL.dylib"
           lib.install "angle_build/libGLESv2.dylib"
           include.install Pathname.glob("include/*")

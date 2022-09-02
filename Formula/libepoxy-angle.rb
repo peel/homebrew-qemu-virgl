@@ -17,6 +17,8 @@ class LibepoxyAngle < Formula
   depends_on "python@3.10" => :build
   depends_on "akirakyle/qemu-virgl/libangle"
 
+  keg_only "it conflicts with `libepoxy`"
+
   def install
     mkdir "build" do
       system "meson", *std_meson_args,
