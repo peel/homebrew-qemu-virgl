@@ -79,10 +79,8 @@ class QemuVirgl < Formula
     system "sed", "-i", "-e", "3520i             
                install_rpath: '/opt/homebrew/lib',
 ", "meson.build"
-    #system "false"
     system "./configure", *args
     system "make", "V=1", "install"
-    system "false"
   end
 
   test do
