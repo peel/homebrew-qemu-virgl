@@ -22,11 +22,8 @@ class LibepoxyAngle < Formula
   def install
     mkdir "build" do
       system "meson", *std_meson_args,
+             "-Dc_args=-I#{Formula["libangle"].opt_prefix}/include",
              "-Degl=yes", "-Dx11=false", ".."
-      # "-Dc_args=-I#{Formula["libangle"].opt_prefix}/include",
-      # "-Dc_link_args=-Wl,-rpath,${HOMEBREW_PREFIX}/lib",
-      # "-Dc_link_args=-L#{Formula["libangle"].opt_prefix}/lib",
-      # "-Dc_link_args=-Wl,-rpath,#{rpath}",
       system "ninja", "-v"
       system "ninja", "install", "-v"
     end

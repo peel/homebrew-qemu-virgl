@@ -5,10 +5,6 @@ class Libangle < Formula
   version "20220804.1"
   license "BSD-3-Clause"
 
-  # relocation fails in replace_command with HeaderPadError in macho_file.rb
-  # this issue may be related https://github.com/Homebrew/brew/issues/12832
-  # this should fix the bottling: https://github.com/Homebrew/brew/issues/4979
-  # this seems like a similar error: https://github.com/knazarov/homebrew-qemu-virgl/issues/91
   bottle do
     root_url "https://github.com/akirakyle/homebrew-qemu-virgl/releases/download/v1"
     sha256 cellar: :any_skip_relocation, arm64_monterey: "45576813b1425175f7a3cb9aedae4d3180401ac98f8a9cb2a947fba305604578"
@@ -29,6 +25,8 @@ class Libangle < Formula
           Dir.chdir(buildpath)
           ENV["DEPOT_TOOLS_UPDATE"] = "0"
 
+          # We run this rather than scripts/bootstrap.py
+          # so that we can set the cache-dir since depot-tools pulls in a lot!
           system "gclient", "config",
                  "--name", "change2dot",
                  "--unmanaged",
@@ -42,6 +40,8 @@ class Libangle < Formula
           system "gclient", "sync", "-j", ENV.make_jobs
           # "--no-history", "--shallow",
 
+          # This fixes relocation failing with HeaderPadError in
+          # replace_command in macho_file.rb
           system "sed", "-i", "-e", "1182i\\
           \"-Wl,-headerpad_max_install_names\",
           ", "BUILD.gn"

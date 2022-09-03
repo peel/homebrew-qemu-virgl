@@ -65,13 +65,10 @@ class QemuVirgl < Formula
       --extra-ldflags=-L#{Formula["libepoxy-angle"].opt_prefix}/lib
       --extra-ldflags=-L#{Formula["virglrenderer"].opt_prefix}/lib
       --extra-ldflags=-L#{Formula["spice-protocol"].opt_prefix}/lib
-      --extra-ldflags=-Wl,-rpath,#{HOMEBREW_PREFIX}/lib
       --disable-sdl
       --disable-gtk
     ]
 
-    # https://github.com/mesonbuild/meson/issues/3882
-    # https://github.com/mesonbuild/meson/issues/2567
     # Sharing Samba directories in QEMU requires the samba.org smbd which is
     # incompatible with the macOS-provided version. This will lead to
     # silent runtime failures, so we set it to a Homebrew path in order to
