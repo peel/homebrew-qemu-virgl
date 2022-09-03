@@ -33,7 +33,7 @@ jobs:
 
       - run: brew test-bot --only-tap-syntax
 
-      - run: brew test-bot -v --only-formulae
+      - run: brew test-bot -v --testing-formulae akirakyle/qemu-virgl/qemu-virgl
         if: github.event_name == 'pull_request'
 
       - name: Upload bottles as artifact
