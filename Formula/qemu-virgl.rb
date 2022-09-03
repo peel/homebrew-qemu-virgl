@@ -70,8 +70,8 @@ class QemuVirgl < Formula
       --disable-gtk
     ]
 
-# https://github.com/mesonbuild/meson/issues/3882
-# https://github.com/mesonbuild/meson/issues/2567
+    # https://github.com/mesonbuild/meson/issues/3882
+    # https://github.com/mesonbuild/meson/issues/2567
     # Sharing Samba directories in QEMU requires the samba.org smbd which is
     # incompatible with the macOS-provided version. This will lead to
     # silent runtime failures, so we set it to a Homebrew path in order to
@@ -81,7 +81,9 @@ class QemuVirgl < Formula
 
     args << "--enable-cocoa" if OS.mac?
 
-    system "sed", "-i", "-e", "3520i             
+    # https://github.com/mesonbuild/meson/issues/3882
+    # https://github.com/mesonbuild/meson/issues/2567
+    system "sed", "-i", "-e", "3520i\\
                install_rpath: '/opt/homebrew/lib',
 ", "meson.build"
     system "./configure", *args

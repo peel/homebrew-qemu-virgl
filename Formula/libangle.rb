@@ -35,12 +35,12 @@ class Libangle < Formula
                  "--cache-dir", "#{HOMEBREW_CACHE}/gclient_cache",
                  "-j", ENV.make_jobs,
                  "https://chromium.googlesource.com/angle/angle.git"
-          content = File.read('.gclient')
-          content = content.gsub(/change2dot/, '.')
+          content = File.read(".gclient")
+          content = content.gsub(/change2dot/, ".")
           content += "target_os = [ 'android' ]"
-          File.open('.gclient', "w") {|file| file.puts content }
-          system "gclient", "sync", "--no-history", "-j", ENV.make_jobs
-          # "--shallow",
+          File.open(".gclient", "w") { |file| file.puts content }
+          system "gclient", "sync", "-j", ENV.make_jobs
+          # "--no-history", "--shallow",
 
           system "sed", "-i", "-e", "1182i\\
           \"-Wl,-headerpad_max_install_names\",

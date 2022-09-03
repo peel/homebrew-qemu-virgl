@@ -11,22 +11,22 @@ class LibepoxyAngle < Formula
     sha256 cellar: :any, arm64_monterey: "3fbabe75763e6379178bc3dc52a874f124ca614f54dec421df07c742189df264"
   end
 
+  keg_only "it conflicts with `libepoxy`"
+
   depends_on "meson" => :build
   depends_on "ninja" => :build
   depends_on "pkg-config" => :build
   depends_on "python@3.10" => :build
   depends_on "akirakyle/qemu-virgl/libangle"
 
-  keg_only "it conflicts with `libepoxy`"
-
   def install
     mkdir "build" do
       system "meson", *std_meson_args,
              "-Degl=yes", "-Dx11=false", ".."
-             # "-Dc_args=-I#{Formula["libangle"].opt_prefix}/include",
-             # "-Dc_link_args=-Wl,-rpath,${HOMEBREW_PREFIX}/lib",
-             # "-Dc_link_args=-L#{Formula["libangle"].opt_prefix}/lib",
-             # "-Dc_link_args=-Wl,-rpath,#{rpath}",
+      # "-Dc_args=-I#{Formula["libangle"].opt_prefix}/include",
+      # "-Dc_link_args=-Wl,-rpath,${HOMEBREW_PREFIX}/lib",
+      # "-Dc_link_args=-L#{Formula["libangle"].opt_prefix}/lib",
+      # "-Dc_link_args=-Wl,-rpath,#{rpath}",
       system "ninja", "-v"
       system "ninja", "install", "-v"
     end
