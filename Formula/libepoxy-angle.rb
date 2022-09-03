@@ -8,7 +8,7 @@ class LibepoxyAngle < Formula
 
   bottle do
     root_url "https://github.com/akirakyle/homebrew-qemu-virgl/releases/download/v1"
-    sha256 cellar: :any, arm64_monterey: "3fbabe75763e6379178bc3dc52a874f124ca614f54dec421df07c742189df264"
+    sha256 cellar: :any, arm64_monterey: "6a31b9554df5f37bd8fa3011b7745faab4eaf86712ad7125d9f4a02faa33b0a1"
   end
 
   keg_only "it conflicts with `libepoxy`"

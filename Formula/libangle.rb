@@ -7,7 +7,7 @@ class Libangle < Formula
 
   bottle do
     root_url "https://github.com/akirakyle/homebrew-qemu-virgl/releases/download/v1"
-    sha256 cellar: :any_skip_relocation, arm64_monterey: "45576813b1425175f7a3cb9aedae4d3180401ac98f8a9cb2a947fba305604578"
+    sha256 cellar: :any, arm64_monterey: "be913d024f540ae30bab440ebd0c0786056738753fdaedef194c529a7e422e1a"
   end
 
   depends_on "meson" => :build
@@ -38,7 +38,6 @@ class Libangle < Formula
           content += "target_os = [ 'android' ]"
           File.open(".gclient", "w") { |file| file.puts content }
           system "gclient", "sync", "-j", ENV.make_jobs
-          # "--no-history", "--shallow",
 
           # This fixes relocation failing with HeaderPadError in
           # replace_command in macho_file.rb
