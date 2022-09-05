@@ -5,7 +5,6 @@ class Virglrenderer < Formula
   url "https://github.com/akihikodaki/virglrenderer.git", revision: "23f309ff0cf677b16d44c62f72ff01a84f845962"
   version "20220219.1"
   license "MIT"
-  # A
 
   bottle do
     root_url "https://github.com/akirakyle/homebrew-qemu-virgl/releases/download/virglrenderer-20220219.1"
