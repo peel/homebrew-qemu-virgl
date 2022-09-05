@@ -8,7 +8,8 @@ class Libangle < Formula
   bottle do
     root_url "https://github.com/akirakyle/homebrew-qemu-virgl/releases/download/libangle-20220804.1"
     rebuild 1
-    sha256 cellar: :any, monterey: "775f17397b986c582b0238aa557c231c395091e2afdffd364eeb007ab70a20a0"
+    sha256 cellar: :any, arm64_monterey: "be913d024f540ae30bab440ebd0c0786056738753fdaedef194c529a7e422e1a"
+    sha256 cellar: :any, monterey:       "775f17397b986c582b0238aa557c231c395091e2afdffd364eeb007ab70a20a0"
   end
 
   depends_on "meson" => :build

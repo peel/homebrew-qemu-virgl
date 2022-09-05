@@ -9,7 +9,8 @@ class Virglrenderer < Formula
   bottle do
     root_url "https://github.com/akirakyle/homebrew-qemu-virgl/releases/download/virglrenderer-20220219.1"
     rebuild 1
-    sha256 cellar: :any, monterey: "a3f478a34da83228e72dff286e4576d6c75a972facb65ab0669a3381af43dd5c"
+    sha256 cellar: :any, arm64_monterey: "977c995782c155af0541bfcd4d2abdc72a0a11ca6e2858ced28c82fef81f6e06"
+    sha256 cellar: :any, monterey:       "a3f478a34da83228e72dff286e4576d6c75a972facb65ab0669a3381af43dd5c"
   end
 
   depends_on "meson" => :build
