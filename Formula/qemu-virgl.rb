@@ -2,8 +2,8 @@ class QemuVirgl < Formula
   desc "Emulator for x86 and PowerPC"
   homepage "https://www.qemu.org/"
   # waiting for upstreaming of https://github.com/akihikodaki/qemu/tree/macos
-  url "https://github.com/akihikodaki/qemu.git", using: :git, revision: "4d2563def3e26482c6b1ff8ab38c31eea8373890"
-  version "20220226.1"
+  url "https://github.com/akihikodaki/qemu.git", using: :git, revision: "ec003996725787cc169cc49ace0326f5ff3464e6"
+  version "20221230.1"
   license "GPL-2.0-only"
 
   bottle do

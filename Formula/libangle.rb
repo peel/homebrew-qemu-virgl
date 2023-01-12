@@ -1,8 +1,8 @@
 class Libangle < Formula
   desc "Conformant OpenGL ES implementation for Windows, Mac, Linux, iOS and Android"
   homepage "https://github.com/google/angle"
-  url "https://github.com/google/angle.git", using: :git, revision: "4a65a669e11bd7bfa9d77cbf7001836379ec29b5"
-  version "20220804.1"
+  url "https://github.com/akihikodaki/angle", using: :git, revision: "66ab9240d3a5969258e65f2f7fe453e83299aa30"
+  version "20221101.1"
   license "BSD-3-Clause"
 
   bottle do
@@ -16,7 +16,7 @@ class Libangle < Formula
   depends_on "ninja" => :build
 
   resource "depot_tools" do
-    url "https://chromium.googlesource.com/chromium/tools/depot_tools.git", revision: "138bff2823590b3f3db440425bf712392defb7de"
+    url "https://chromium.googlesource.com/chromium/tools/depot_tools.git", revision: "268d645853ee8e1b884260049e5464a5ca2d8a30"
   end
 
   def install
@@ -43,7 +43,7 @@ class Libangle < Formula
 
           # This fixes relocation failing with HeaderPadError in
           # replace_command in macho_file.rb
-          system "sed", "-i", "-e", "1182i\\
+          system "sed", "-i", "-e", "1228i\\
           \"-Wl,-headerpad_max_install_names\",
           ", "BUILD.gn"
           system "gn", "gen", \

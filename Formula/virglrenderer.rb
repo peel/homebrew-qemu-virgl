@@ -2,8 +2,8 @@ class Virglrenderer < Formula
   desc "VirGL virtual OpenGL renderer"
   homepage "https://gitlab.freedesktop.org/virgl/virglrenderer"
   # waiting for upstreaming of https://github.com/akihikodaki/virglrenderer/tree/macos
-  url "https://github.com/akihikodaki/virglrenderer.git", revision: "23f309ff0cf677b16d44c62f72ff01a84f845962"
-  version "20220219.1"
+  url "https://github.com/akihikodaki/virglrenderer.git", revision: "a4e3f13ca2fdf71a55df2ba218ab530755e5e87b"
+  version "20230107.1"
   license "MIT"
 
   bottle do
