@@ -21,6 +21,8 @@ class QemuVirgl < Formula
   depends_on "akirakyle/qemu-virgl/libangle"
   depends_on "akirakyle/qemu-virgl/libepoxy-angle"
   depends_on "akirakyle/qemu-virgl/virglrenderer"
+
+  depends_on "capstone"
   depends_on "glib"
   depends_on "gnutls"
   depends_on "jpeg-turbo"
@@ -52,9 +54,10 @@ class QemuVirgl < Formula
       --host-cc=#{ENV.cc}
       --disable-bsd-user
       --disable-guest-agent
+      --enable-slirp
+      --enable-capstone
       --enable-curses
       --enable-libssh
-      --enable-slirp=system
       --enable-vde
       --enable-virtfs
       --enable-zstd
@@ -68,7 +71,6 @@ class QemuVirgl < Formula
       --extra-ldflags=-L#{Formula["virglrenderer"].opt_prefix}/lib
       --extra-ldflags=-L#{Formula["spice-protocol"].opt_prefix}/lib
       --disable-sdl
-      --disable-gtk
     ]
 
     # Sharing Samba directories in QEMU requires the samba.org smbd which is
@@ -78,7 +80,11 @@ class QemuVirgl < Formula
     # Samba installations from external taps.
     args << "--smbd=#{HOMEBREW_PREFIX}/sbin/samba-dot-org-smbd"
 
-    args << "--enable-cocoa" if OS.mac?
+    args += if OS.mac?
+      ["--disable-gtk", "--enable-cocoa"]
+    else
+      ["--enable-gtk"]
+    end
 
     # https://github.com/mesonbuild/meson/issues/3882
     # https://github.com/mesonbuild/meson/issues/2567
