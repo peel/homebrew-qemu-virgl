@@ -7,7 +7,7 @@ class Virglrenderer < Formula
   license "MIT"
 
   bottle do
-    root_url "https://github.com/akirakyle/homebrew-qemu-virgl/releases/download/virglrenderer-20230107.1"
+    root_url "https://github.com/akirakyle/homebrew-qemu-virgl/releases/download/2023-01-18"
     rebuild 1
     sha256 cellar: :any, arm64_ventura: "b574076ea9688be0f2c68aa189ae879a3e94e40eaf6b587821f140fd0837ec3f"
   end

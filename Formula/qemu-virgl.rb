@@ -7,7 +7,7 @@ class QemuVirgl < Formula
   license "GPL-2.0-only"
 
   bottle do
-    root_url "https://github.com/akirakyle/homebrew-qemu-virgl/releases/download/qemu-virgl-20221230.1"
+    root_url "https://github.com/akirakyle/homebrew-qemu-virgl/releases/download/2023-01-18"
     rebuild 1
     sha256 arm64_ventura: "354b81d36f405a91bf6ecdf2be86a8f596da8126b7f8845c002363ef1b4a0e96"
   end

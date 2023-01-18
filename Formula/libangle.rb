@@ -6,7 +6,7 @@ class Libangle < Formula
   license "BSD-3-Clause"
 
   bottle do
-    root_url "https://github.com/akirakyle/homebrew-qemu-virgl/releases/download/libangle-20221101.1"
+    root_url "https://github.com/akirakyle/homebrew-qemu-virgl/releases/download/2023-01-18"
     rebuild 1
     sha256 cellar: :any, arm64_ventura: "c2e2863050d23c757ec65513cb22e83e84bc0e1bf83658278fb2fac9f124feb4"
   end

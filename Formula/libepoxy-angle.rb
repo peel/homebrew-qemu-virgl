@@ -7,7 +7,7 @@ class LibepoxyAngle < Formula
   license "MIT"
 
   bottle do
-    root_url "https://github.com/akirakyle/homebrew-qemu-virgl/releases/download/libepoxy-angle-20211208.1"
+    root_url "https://github.com/akirakyle/homebrew-qemu-virgl/releases/download/2023-01-18"
     rebuild 1
     sha256 cellar: :any, arm64_ventura: "1beef37e04953c782a67ea1325df1983998fa0f69ece3d4816e373f17035d231"
   end
