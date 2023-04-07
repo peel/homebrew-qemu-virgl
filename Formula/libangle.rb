@@ -46,9 +46,9 @@ class Libangle < Formula
           \"-Wl,-headerpad_max_install_names\",
           ", "BUILD.gn"
           system "gn", "gen", \
-                 "--args=is_debug=false", \
+                 "--args=is_debug=false angle_static_config=true", \
                  "./angle_build"
-          system "ninja", "-C", "angle_build"
+          system "ninja", "-C", "libANGLE_static libGLESv2_static libEGL_static"
           lib.install "angle_build/libEGL_static.dylib"
           lib.install "angle_build/libGLESv2_static.dylib"
           include.install Pathname.glob("include/*")
