@@ -49,8 +49,8 @@ class Libangle < Formula
                  "--args=is_debug=false", \
                  "./angle_build"
           system "ninja", "-C", "angle_build"
-          lib.install "angle_build/libEGL.dylib"
-          lib.install "angle_build/libGLESv2.dylib"
+          lib.install "angle_build/libEGL_static.dylib"
+          lib.install "angle_build/libGLESv2_static.dylib"
           include.install Pathname.glob("include/*")
         end
       end
